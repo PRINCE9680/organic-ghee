@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app-deployment
+spec:
+  replicas: {{ .Values.user.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.user.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.user.app }}
+    spec:
+      containers:
+        - name: {{ .Values.user.names.container }}
+          image: "{{ .Values.user.image.repository }}:{{ .Values.user.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.user.port }}
+          env:
+            - name: MONGO_URI
+              value: {{ .Values.user.URI}}

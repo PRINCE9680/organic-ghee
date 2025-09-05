@@ -1,0 +1,18 @@
+mongodb:
+  name: mongodb
+  port: 27017
+  replicas: 1
+  image:
+    repository: mongo
+    tag: latest
+user:
+  names:
+    container: organic-ghee
+  type: LoadBalancer
+  port: 5656
+  app: organic-ghee
+  replicas: 2
+  image:
+    repository: prince5678/organic-ghee
+    tag: latest
+  URI: "mongodb://{{ .Release.Name }}-mongo:27017/restaurant"
