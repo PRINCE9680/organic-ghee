@@ -15,4 +15,4 @@ user:
   image:
     repository: prince5678/organic-ghee
     tag: latest
-  URI: "mongodb://{{ .Release.Name }}-mongo:27017/restaurant"
+  URI: "mongodb://{{ .Release.Name }}-mongodb-service:27017/restorent"
